@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-from matplotlib.lines import Line2D, lineMarkers
+from matplotlib.lines import Line2D
 import numpy as np
 
 Interchange_Station_Color = "#ffffff"
