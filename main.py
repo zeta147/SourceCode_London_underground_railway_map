@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-from matplotlib.lines import Line2D
+from matplotlib.lines import Line2D, lineMarkers
 import numpy as np
 
 Interchange_Station_Color = "#ffffff"
@@ -36,25 +36,25 @@ def add_stations_name(stations):
 # Key pair is node name, value pair is the position x, y, and the color
 Piccadilly_Circus_Nodes = {
         "Hyde Park Corner":[32, 18, Piccadilly_Circus_Color, 33, 17],
-        "Green Park":[39, 25, Piccadilly_Circus_Color, 39, 26],
+        "Green Park":[39, 25, Piccadilly_Circus_Color, 36, 27],
         "Piccadilly Circus":[52, 25, Interchange_Station_Color, 52, 27],
         "Leicester Square":[62, 25, Interchange_Station_Color, 63, 24],
         "Convent Garden":[68, 30, Piccadilly_Circus_Color, 69, 29],
-        "Holborn":[75, 35, Interchange_Station_Color, 76, 36]
+        "Holborn":[75, 35, Interchange_Station_Color, 73, 37]
     }
 add_stations(Piccadilly_Circus_Nodes)
 
 Central_Nodes = {
-        "Bond Street":[35, 40, Central_Color, 36, 41],
+        "Bond Street":[35, 40, Central_Color, 32, 42],
         "Oxford Circus":[46, 40, Interchange_Station_Color, 47, 41],
         "Tottenham Court Road":[58, 35, Interchange_Station_Color, 59, 37],
-        "Chancery Lane":[82, 33, Central_Color, 82, 34],
-        "St Paul's":[100, 33, Central_Color, 100, 34],
+        "Chancery Lane":[82, 33, Central_Color, 79, 35],
+        "St Paul's":[100, 33, Central_Color, 98, 35],
     }
 add_stations(Central_Nodes)
 
 Bakerloo_Nodes = {
-        "Baker Street":[33, 60, Bakerloo_Color, 34, 61],
+        "Baker Street":[33, 60, Bakerloo_Color, 30, 62],
         "Regent's Park": [40, 50, Bakerloo_Color, 41, 51],
         "Charing Cross":[58, 15, Interchange_Station_Color, 59, 15],
         "Embankment":[64, 10, Bakerloo_Color, 65, 10],
@@ -62,7 +62,7 @@ Bakerloo_Nodes = {
 add_stations(Bakerloo_Nodes)
 
 Northern_Node = {
-        "Warren Street":[58, 75, Northern_Color, 59, 75],
+        "Warren Street":[58, 75, Northern_Color, 55, 77],
         "Goodge Street":[58, 50, Northern_Color, 59, 50],
         "Waterloo":[58, -5, Northern_Color, 59, -5],
     }
@@ -116,9 +116,7 @@ nodeColor= nx.get_node_attributes(TransportGraph, 'ccn')
 edgeColor= nx.get_edge_attributes(TransportGraph, 'cce')
 edgeWeight= nx.get_edge_attributes(TransportGraph, 'weight')
 
-edgeWeightLabel = edgeWeight
-for i in edgeWeightLabel:
-    edgeWeightLabel[i] = f"{edgeWeight[i]} km"
+
 
 nodeColorList = list(nodeColor.values())
 edgeColorList = list(edgeColor.values())
@@ -149,7 +147,6 @@ add_stations_name(Northern_Node)
 plt.text(50, 90, s='London underground railways map (km)', rotation=0, fontweight='bold', color=Piccadilly_Circus_Color, fontsize='20')
 plt.text(100, 3, s='Key', rotation=0, fontweight='bold', fontsize='15')
 
-
 route_distance_dict = nx.get_edge_attributes(TransportGraph, 'weight')
 distance_route_list = list(route_distance_dict.values())
 
@@ -171,18 +168,26 @@ plt.text(26, -10, s=f'standard deviation: {std_length_distance_routes} km', font
 
 nx.draw_networkx_nodes(TransportGraph, pos, node_color= nodeColorList, edgecolors= "black", node_size=nodeSizeList)
 nx.draw_networkx_edges(TransportGraph, pos, edge_color= edgeColorList, width=5)
-nx.draw_networkx_edge_labels(TransportGraph, pos, edgeWeightLabel, font_size=10)
+nx.draw_networkx_edge_labels(TransportGraph, pos, edgeWeight, font_size=10)
 
-Key = [Line2D([], [], color=Piccadilly_Circus_Color, label="Piccadilly", linewidth=3),
-       Line2D([], [], color=Bakerloo_Color, label="Bakerloo", linewidth=3),
-       Line2D([], [], color=Northern_Color, label="Northern", linewidth=3),
-       Line2D([], [], color=Central_Color, label="Central", linewidth=3)]
+Key = [
+    Line2D([], [], color=Bakerloo_Color, label="Bakerloo", linewidth=3),
+    Line2D([], [], color=Central_Color, label="Central", linewidth=3),
+    Line2D([], [], color=Northern_Color, label="Northern", linewidth=3),
+    Line2D([], [], color=Piccadilly_Circus_Color, label="Piccadilly", linewidth=3),
+    Line2D([], [], color='black' ,markerfacecolor=Interchange_Station_Color, label="Inter station", linewidth=1, marker='o', markersize=15),
+    ]
 
 plt.legend(handles=Key, fontsize='15', loc='lower right')
 
 
-plt.savefig('Images/TransportGraph_Task3_PhamQuocVi.png')
+plt.savefig('Images/TransportGraph_Task2_PhamQuocVi.png')
 
 plt.show()
+
+
+
+
+
 
 
