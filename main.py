@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-from matplotlib.lines import Line2D
+from matplotlib.lines import Line2D, lineMarkers
 import numpy as np
 
 Interchange_Station_Color = "#ffffff"
@@ -145,7 +145,7 @@ add_stations_name(Northern_Node)
 
 
 plt.text(50, 90, s='London underground railways map (km)', rotation=0, fontweight='bold', color=Piccadilly_Circus_Color, fontsize='20')
-plt.text(100, 3, s='Key', rotation=0, fontweight='bold', fontsize='15')
+
 
 route_distance_dict = nx.get_edge_attributes(TransportGraph, 'weight')
 distance_route_list = list(route_distance_dict.values())
@@ -171,6 +171,7 @@ nx.draw_networkx_edges(TransportGraph, pos, edge_color= edgeColorList, width=5)
 nx.draw_networkx_edge_labels(TransportGraph, pos, edgeWeight, font_size=10)
 
 Key = [
+    Line2D([], [], color="white", label="Key:"),
     Line2D([], [], color=Bakerloo_Color, label="Bakerloo", linewidth=3),
     Line2D([], [], color=Central_Color, label="Central", linewidth=3),
     Line2D([], [], color=Northern_Color, label="Northern", linewidth=3),
@@ -181,7 +182,7 @@ Key = [
 plt.legend(handles=Key, fontsize='15', loc='lower right')
 
 
-plt.savefig('Images/TransportGraph_Task2_PhamQuocVi.png')
+plt.savefig('Images/TransportGraph_Task3_PhamQuocVi.png')
 
 plt.show()
 
