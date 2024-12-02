@@ -176,7 +176,7 @@ Key = [
     Line2D([], [], color=Central_Color, label="Central", linewidth=3),
     Line2D([], [], color=Northern_Color, label="Northern", linewidth=3),
     Line2D([], [], color=Piccadilly_Circus_Color, label="Piccadilly", linewidth=3),
-    Line2D([], [], color='black' ,markerfacecolor=Interchange_Station_Color, label="Inter station", linewidth=1, marker='o', markersize=15),
+    Line2D([], [], color='black' ,markerfacecolor=Interchange_Station_Color, label="Interchange stations", linewidth=1, marker='o', markersize=15),
     ]
 
 plt.legend(handles=Key, fontsize='15', loc='lower right')
